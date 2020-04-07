@@ -196,12 +196,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     CustomStoreCard(
                       foodItem: foodItems[0],
-                      position: 'left',
+                      position: 'right',
                       color: Color(0xffFBE8D3).withOpacity(.7),
                     ),
                     CustomStoreCard(
-                      foodItem: foodItems[0],
-                      position: 'right',
+                      foodItem: foodItems[1],
+                      position: 'left',
                       color: Color(0xffA0EDF7).withOpacity(.7),
                     ),
                     TextRow(

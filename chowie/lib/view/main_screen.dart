@@ -1,6 +1,8 @@
 import 'package:chowie/utils/bottom_nav_item_widget.dart';
 import 'package:chowie/utils/nav_bar_enum.dart';
+import 'package:chowie/view/history_screen.dart';
 import 'package:chowie/view/home_screen.dart';
+import 'package:chowie/view/store_screen.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
@@ -10,6 +12,20 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   SelectedNavBar _selectedNavBar = SelectedNavBar.home;
+  PageController _pageController = PageController(
+    initialPage: 0,
+  );
+
+  List<Widget> screens = [
+    HomeScreen(),
+    HistoryScreen(),
+    StoreScreen(),
+  ];
+  @override
+  void dispose() {
+    super.dispose();
+    _pageController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +42,9 @@ class _MainScreenState extends State<MainScreen> {
             children: <Widget>[
               InkWell(
                 onTap: () {
-                  setState(() {
-                    _selectedNavBar = SelectedNavBar.home;
-                    print('home');
-                  });
+                  _pageController.animateToPage(0,
+                      duration: Duration(milliseconds: 400),
+                      curve: Curves.easeIn);
                 },
                 child: bottomNavItem(
                   context,
@@ -42,10 +57,9 @@ class _MainScreenState extends State<MainScreen> {
               ),
               InkWell(
                 onTap: () {
-                  setState(() {
-                    _selectedNavBar = SelectedNavBar.history;
-                    print('history button tapped');
-                  });
+                  _pageController.animateToPage(1,
+                      duration: Duration(milliseconds: 200),
+                      curve: Curves.easeIn);
                 },
                 child: bottomNavItem(
                   context,
@@ -58,10 +72,9 @@ class _MainScreenState extends State<MainScreen> {
               ),
               InkWell(
                 onTap: () {
-                  setState(() {
-                    _selectedNavBar = SelectedNavBar.store;
-                    print('store button pressed');
-                  });
+                  _pageController.animateToPage(2,
+                      duration: Duration(milliseconds: 200),
+                      curve: Curves.easeIn);
                 },
                 child: bottomNavItem(
                   context,
@@ -76,7 +89,31 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ),
       ),
-      body: HomeScreen(),
+      body: PageView.builder(
+        onPageChanged: (int page) {
+          _pageController.animateToPage(page,
+              duration: Duration(milliseconds: 200), curve: Curves.easeIn);
+          if (page == 0) {
+            setState(() {
+              _selectedNavBar = SelectedNavBar.home;
+            });
+          }
+          if (page == 1) {
+            setState(() {
+              _selectedNavBar = SelectedNavBar.history;
+            });
+          }
+          if (page == 2) {
+            setState(() {
+              _selectedNavBar = SelectedNavBar.store;
+            });
+          }
+        },
+        scrollDirection: Axis.horizontal,
+        controller: _pageController,
+        itemCount: screens.length,
+        itemBuilder: (context, index) => screens[index],
+      ),
     );
   }
 }
