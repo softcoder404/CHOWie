@@ -15,7 +15,7 @@ class FoodItemsProvider {
       FoodItemsModel(
         title: 'Food Shelf Items',
         totalItems: '18',
-        itemImagePath: 'assets/images/food3.png',
+        itemImagePath: 'assets/images/food2.png',
         items: shelfItemsList,
       ),
     ];
