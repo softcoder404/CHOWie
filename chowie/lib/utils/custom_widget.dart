@@ -56,7 +56,7 @@ class CustomStoreCard extends StatelessWidget {
             right: position == 'right' ? 5 : null,  
             child: Container(
               height: 120,
-              width: 148,
+              width: 130,
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(foodItem.itemImagePath),
