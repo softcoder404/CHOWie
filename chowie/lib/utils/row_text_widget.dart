@@ -4,9 +4,8 @@ class TextRow extends StatelessWidget {
   final firstText;
   final secondText;
   final textStyle;
-  const TextRow({Key key, this.firstText, this.secondText, this.textStyle})
-      : super(key: key);
-
+  const TextRow({this.firstText, this.secondText, this.textStyle});
+      
   @override
   Widget build(BuildContext context) {
     return Row(
