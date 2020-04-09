@@ -8,13 +8,13 @@ class FoodItemsProvider {
     foodItems = [
       FoodItemsModel(
         title: 'Refrigerator Foods',
-        totalItems: '25',
+        totalItems: '6',
         itemImagePath: 'assets/images/food1.png',
         items: refItemsList,
       ),
       FoodItemsModel(
         title: 'Food Shelf Items',
-        totalItems: '18',
+        totalItems: '3',
         itemImagePath: 'assets/images/food2.png',
         items: shelfItemsList,
       ),
