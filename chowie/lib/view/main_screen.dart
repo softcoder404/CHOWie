@@ -16,10 +16,12 @@ class _MainScreenState extends State<MainScreen> {
     initialPage: 0,
   );
 
+  final PageStorageBucket bucket = new PageStorageBucket();
+
   List<Widget> screens = [
-    HomeScreen(),
-    HistoryScreen(),
-    StoreScreen(),
+    HomeScreen(key: PageStorageKey('homeScreen'),),
+    HistoryScreen(key: PageStorageKey('historyScreen')),
+    StoreScreen(key: PageStorageKey('storeScreen'),),
   ];
   @override
   void dispose() {
@@ -89,7 +91,9 @@ class _MainScreenState extends State<MainScreen> {
           ),
         ),
       ),
-      body: PageView.builder(
+      body: PageStorage(
+        bucket: bucket,
+        child:  PageView.builder(
         onPageChanged: (int page) {
           _pageController.animateToPage(page,
               duration: Duration(milliseconds: 200), curve: Curves.easeIn);
@@ -114,6 +118,34 @@ class _MainScreenState extends State<MainScreen> {
         itemCount: screens.length,
         itemBuilder: (context, index) => screens[index],
       ),
+      ),
     );
   }
 }
+
+/**
+ *  PageView.builder(
+        onPageChanged: (int page) {
+          _pageController.animateToPage(page,
+              duration: Duration(milliseconds: 200), curve: Curves.easeIn);
+          if (page == 0) {
+            setState(() {
+              _selectedNavBar = SelectedNavBar.home;
+            });
+          }
+          if (page == 1) {
+            setState(() {
+              _selectedNavBar = SelectedNavBar.history;
+            });
+          }
+          if (page == 2) {
+            setState(() {
+              _selectedNavBar = SelectedNavBar.store;
+            });
+          }
+        },
+        scrollDirection: Axis.horizontal,
+        controller: _pageController,
+        itemCount: screens.length,
+        itemBuilder: (context, index) => screens[index],
+      ), */

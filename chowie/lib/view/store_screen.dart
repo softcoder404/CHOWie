@@ -6,6 +6,7 @@ import 'package:chowie/utils/store_items_card.dart';
 import 'package:flutter/material.dart';
 
 class StoreScreen extends StatefulWidget {
+   const StoreScreen({Key key}) : super(key: key);
   @override
   _StoreScreenState createState() => _StoreScreenState();
 }

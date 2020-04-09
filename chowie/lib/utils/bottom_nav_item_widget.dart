@@ -2,28 +2,29 @@ import 'package:flutter/material.dart';
 
 Widget bottomNavItem(BuildContext context, {icon, position, title, isActive}) {
   return Container(
-    width: isActive ? 120 : 60,
+    width: isActive ? 120 : 50,
     height: 50,
     child: Stack(
       alignment: Alignment.bottomLeft,
       children: <Widget>[
         Positioned(
+          top: isActive ? 0.0 : 5,
           right: position == 'right' ? 0 : null,
           left: position == 'left' ? 0 : null,
           child: AnimatedContainer(
             duration: Duration(milliseconds: 500),
-            height: 50.0,
-            width: 50.0,
+            height: isActive ? 50.0 : 40,
+            width: isActive ? 50.0 : 40,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(27.0), 
               color: isActive
                   ? Theme.of(context).primaryColor
-                  : Colors.grey.withOpacity(.6),
+                  : Colors.grey.withOpacity(.4),
             ),
             child: Icon(
               icon,
               color: isActive ? Colors.white : Colors.black,
-              size: 28,
+              size: isActive? 28 : 24,
             ),
           ),
         ),
